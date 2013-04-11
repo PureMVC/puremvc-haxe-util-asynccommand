@@ -14,7 +14,11 @@ import org.puremvc.haxe.multicore.patterns.command.SimpleCommand;
  * <p>Your subclass should override the [execute] 
  * method where your business logic will handle the [INotification].</p>
  */
-class AsyncCommand extends SimpleCommand, implements IAsyncCommand 
+#if haxe3
+class AsyncCommand extends SimpleCommand implements IAsyncCommand
+#else
+class AsyncCommand extends SimpleCommand, implements IAsyncCommand
+#end
 {
 	/**
 	 * Registers the callback for a parent [AsyncMacroCommand].  

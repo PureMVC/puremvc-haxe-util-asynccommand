@@ -4,14 +4,18 @@
  Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 package org.puremvc.haxe.multicore.interfaces;
-	 
-/** 
+
+/**
  * Interface for an Asynchronous Command.
- */ 
-interface IAsyncCommand implements ICommand 
+ */
+#if haxe3
+interface IAsyncCommand extends ICommand
+#else
+interface IAsyncCommand implements ICommand
+#end
 {
 	/**
-	 * Registers the callback for a parent [AsyncMacroCommand].  
+	 * Registers the callback for a parent [AsyncMacroCommand].
 	 */
 	public function setOnComplete( value : Void -> Void ) : Void;
 	
