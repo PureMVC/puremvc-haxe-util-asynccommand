@@ -37,8 +37,12 @@ import org.puremvc.haxe.multicore.patterns.observer.Notifier;
  * calling [addSubCommand] once for each <i>SubCommand</i>
  * to be executed.</p>
  */
+#if haxe3
+class AsyncMacroCommand extends Notifier implements IAsyncCommand implements INotifier
+#else
 class AsyncMacroCommand	extends Notifier, implements IAsyncCommand, implements INotifier
-{	
+#end
+{
 	/**
 	 * Constructor. 
 	 * 
@@ -55,7 +59,6 @@ class AsyncMacroCommand	extends Notifier, implements IAsyncCommand, implements I
 		subCommands = new List();
 		initializeAsyncMacroCommand();			
 	}
-
 	
 	/**
 	 * Initialize the [AsyncMacroCommand].
@@ -94,14 +97,14 @@ class AsyncMacroCommand	extends Notifier, implements IAsyncCommand, implements I
 	/**
 	 * Registers the callback for a parent [AsyncMacroCommand].  
 	 */
-	public function setOnComplete ( value : Void -> Void ) : Void
+	public function setOnComplete( value : Void -> Void ) : Void
 	{
 		onComplete = value;
-	}		
-								
+	}
+
 	/** 
 	 * Starts execution of this [AsyncMacroCommand]'s <i>SubCommands</i>.
-	 * 
+	 *
 	 * <p>The <i>SubCommands</i> will be called in First In/First Out (FIFO) order.</p> 
 	 */
 	public function execute( notification : INotification ) : Void
@@ -109,7 +112,7 @@ class AsyncMacroCommand	extends Notifier, implements IAsyncCommand, implements I
 		note = notification;
 		nextCommand();
 	}
-					
+
 	/** 
 	 * Execute this [AsyncMacroCommand]'s next <i>SubCommand</i>.
 	 * 
