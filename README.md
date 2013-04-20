@@ -8,7 +8,7 @@ The AsyncCommand utility offers a solution to the problem of executing a series 
 * [MultiCore Version](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/docs/Haxe/Utility_Haxe_AsyncCommand/doc-multicore/&desc=PureMVC%20MultiCore%20Docs%20Haxe%20Utility:%20AsyncCommand)
 
 ## Status
-Production - [Version 1.1](https://github.com/PureMVC/puremvc-haxe-util-asynccommand/blob/master/VERSION)
+Production - [Version 1.2](https://github.com/PureMVC/puremvc-haxe-util-asynccommand/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Haxe](http://en.wikipedia.org/wiki/Haxe)
