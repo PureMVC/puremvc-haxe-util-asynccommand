@@ -37,7 +37,11 @@ import org.puremvc.haxe.patterns.observer.Notifier;
  * calling [addSubCommand] once for each <i>SubCommand</i>
  * to be executed.</p>
  */
-class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements INotifier
+#if haxe3
+class AsyncMacroCommand extends Notifier implements IAsyncCommand implements INotifier
+#else
+class AsyncMacroCommand	extends Notifier, implements IAsyncCommand, implements INotifier
+#end
 {
 	/**
 	 * Constructor. 
@@ -78,10 +82,10 @@ class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements I
 	 * [MacroCommand]s or [SimpleCommands] are all acceptable.</p>
 	 */
 	private function initializeAsyncMacroCommand() : Void {}
-	
+
 	/**
 	 * Add a <i>SubCommand</i>.
-	 * 
+	 *
 	 * <p>The <i>SubCommands</i> will be called in First In/First Out (FIFO)
 	 * order.</p>
 	 */
@@ -89,7 +93,7 @@ class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements I
 	{
 		subCommands.add( commandClassRef );
 	}		
-				
+	
 	/**
 	 * Registers the callback for a parent [AsyncMacroCommand].  
 	 */
@@ -97,7 +101,7 @@ class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements I
 	{
 		onComplete = value;
 	}
-	
+
 	/** 
 	 * Starts execution of this [AsyncMacroCommand]'s <i>SubCommands</i>.
 	 *
@@ -112,8 +116,7 @@ class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements I
 	/** 
 	 * Execute this [AsyncMacroCommand]'s next <i>SubCommand</i>.
 	 * 
-	 * <p>
-	 * If the next <i>SubCommand</i> is asynchronous, a callback is registered for
+	 * <p>If the next <i>SubCommand</i> is asynchronous, a callback is registered for
 	 * the command completion, else the next command is run.</p>  
 	 */					
 	function nextCommand() : Void
@@ -130,9 +133,9 @@ class AsyncMacroCommand extends Notifier, implements IAsyncCommand, implements I
 		}
 		else
 		{
-			if( onComplete != null ) onComplete();	
-			note 		=	null;
-			onComplete	=	null;
+			if( onComplete != null ) onComplete();
+			note = null;
+			onComplete = null;
 		}
 	}
 	
